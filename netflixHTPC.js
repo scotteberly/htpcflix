@@ -1,5 +1,6 @@
 var seeSelectedRow = null;
 var seeSelectedMovie = null;
+var seeSelectedProfile = null;
 var seeLastKeyPressed = '';
 var seeLastKeyPressTime = '';
 var seeTimeout = '';
@@ -21,15 +22,35 @@ window.onkeyup = function(e) {
 
    if(key == 37) //left
    {
-      if(seeSelectedRow == null)
-      {
-         seeSelectNextRow();
-      }
+		if(typeof netflix.nfPage != 'undefined') //not profiles gate
+		{
+			if(seeSelectedRow == null)
+			{
+				seeSelectNextRow();
+			}
 
-      seeSelectPreviousMovie();
+			seeSelectPreviousMovie();
 
-      seeSelectedMovie.style.backgroundColor = 'blue'
-      window.scrollTo(seeSelectedMovie.offsetLeft-(document.documentElement.clientWidth/2),seeSelectedRow.offsetTop-(document.documentElement.clientHeight/3));
+			seeSelectedMovie.style.backgroundColor = 'blue';
+			window.scrollTo(seeSelectedMovie.offsetLeft-(document.documentElement.clientWidth/2),seeSelectedRow.offsetTop-(document.documentElement.clientHeight/3));
+		}
+		else //profiles gate
+		{
+			if(seeSelectedProfile == null)
+			{
+				seeSelectedProfile = document.querySelectorAll('ul.profiles')[0].querySelectorAll('li')[0];
+			}
+			else
+			{
+				seeSelectedProfile.style.backgroundColor = '';
+				if(seeSelectedProfile != document.querySelectorAll('ul.profiles')[0].querySelectorAll('li')[0])
+				{
+					seeSelectedProfile = seeSelectedProfile.previousElementSibling;
+				}
+			}
+			
+			seeSelectedProfile.style.backgroundColor = 'green';
+		}
    }
    else if(key == 38) //up
    {
@@ -37,15 +58,35 @@ window.onkeyup = function(e) {
    }
    else if(key == 39)//right
    {
-      if(seeSelectedRow == null)
-      {
-         seeSelectNextRow();
-      }   
-      
-      seeSelectNextMovie(); 
+		if(typeof netflix.nfPage != 'undefined') //not profiles gate
+		{
+			if(seeSelectedRow == null)
+			{
+				seeSelectNextRow();
+			}   
 
-      seeSelectedMovie.style.backgroundColor = 'blue'
-      window.scrollTo(seeSelectedMovie.offsetLeft-(document.documentElement.clientWidth/2),seeSelectedRow.offsetTop-(document.documentElement.clientHeight/3));
+			seeSelectNextMovie(); 
+
+			seeSelectedMovie.style.backgroundColor = 'blue';
+			window.scrollTo(seeSelectedMovie.offsetLeft-(document.documentElement.clientWidth/2),seeSelectedRow.offsetTop-(document.documentElement.clientHeight/3));
+		}
+		else //profiles gate
+		{
+			if(seeSelectedProfile == null)
+			{
+				seeSelectedProfile = document.querySelectorAll('ul.profiles')[0].querySelectorAll('li')[0];
+			}
+			else
+			{
+				seeSelectedProfile.style.backgroundColor = '';
+				if(seeSelectedProfile != document.querySelectorAll('ul.profiles')[0].querySelectorAll('li')[document.querySelectorAll('ul.profiles')[0].querySelectorAll('li').length-1])
+				{
+					seeSelectedProfile = seeSelectedProfile.nextElementSibling;
+				}
+			}
+			
+			seeSelectedProfile.style.backgroundColor = 'green';
+		}
    }   
    else if(key == 40) //down
    {
