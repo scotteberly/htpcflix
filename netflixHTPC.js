@@ -183,7 +183,7 @@ function seeGetShowLink(id)
    }
    else
    {
-      var showLink = id.getElementsByClassName('watchlk')[0].href;
+      var showLink = seeSelectedRow.getElementsByClassName('watchlk')[0].href;
    }
 
    return showLink;
