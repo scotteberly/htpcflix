@@ -29,7 +29,7 @@ window.onkeyup = function(e) {
       seeSelectPreviousMovie();
 
       seeSelectedMovie.style.backgroundColor = 'blue'
-      window.scrollTo(seeSelectedMovie.offsetTop-(document.documentElement.clientWidth/2));
+      window.scrollTo(seeSelectedMovie.offsetLeft-(document.documentElement.clientWidth/2),seeSelectedRow.offsetTop-(document.documentElement.clientHeight/3));
    }
    else if(key == 38) //up
    {
@@ -45,7 +45,7 @@ window.onkeyup = function(e) {
       seeSelectNextMovie(); 
 
       seeSelectedMovie.style.backgroundColor = 'blue'
-      window.scrollTo(seeSelectedMovie.offsetTop-(document.documentElement.clientWidth/2),0);
+      window.scrollTo(seeSelectedMovie.offsetLeft-(document.documentElement.clientWidth/2),seeSelectedRow.offsetTop-(document.documentElement.clientHeight/3));
    }   
    else if(key == 40) //down
    {
@@ -67,9 +67,6 @@ window.onkeyup = function(e) {
    {
       console.log(key);
    }
-   
-   seeSelectedRow.style.backgroundColor = 'red';
-   window.scrollTo(0,seeSelectedRow.offsetTop-(document.documentElement.clientHeight/2));
 
    seeLastKeyPressed = key;
    seeLastKeyPressTime = new Date();
@@ -105,6 +102,9 @@ function seeSelectNextRow()
       seeSelectedMovie.style.backgroundColor='';
       seeSelectedMovie = null;
    }
+   
+   	seeSelectedRow.style.backgroundColor = 'red';
+	window.scrollTo(0,seeSelectedRow.offsetTop-(document.documentElement.clientHeight/3));
 }
 
 function seeSelectPreviousRow()
@@ -137,6 +137,9 @@ function seeSelectPreviousRow()
       seeSelectedMovie.style.backgroundColor='';
       seeSelectedMovie = null;
    }
+   
+	seeSelectedRow.style.backgroundColor = 'red';
+	window.scrollTo(0,seeSelectedRow.offsetTop-(document.documentElement.clientHeight/3));
 }
 
 function seeSelectNextMovie()
